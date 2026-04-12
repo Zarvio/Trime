@@ -1,34 +1,426 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>YouTube Trim & Download</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://www.youtube.com/iframe_api"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Food App</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: linear-gradient(180deg, #1f1c2c, #928dab);
+    color: white;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(18px);
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 20px;
+    text-align: center;
+    animation: fadeIn 0.4s ease;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
+#menu, #foodOptions, #details, #form, #payment {
+    background: transparent !important;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+.qr {
+    margin-top: 15px;
+    border-radius: 15px;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+/* Info Box */
+.info-box {
+    margin-top: 30px;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 13px;
+    opacity: 0.7;
+}
+/* Header */
+.header {
+    max-width: 400px;
+    margin: auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+    border-radius: 0 0 20px 20px;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+/* Title */
+.header h2 {
+    font-size: 18px;
+}
+
+/* Profile Icon */
+.profile {
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+/* Floating Button */
+.spin-fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+/* Popup */
+.spin-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+
+    display: none; /* 🔥 IMPORTANT FIX */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Box */
+.spin-box {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    width: 300px;
+}
+
+/* Wheel */
+.wheel {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 5px solid white;
+    margin: 20px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Segments */
+.segment {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    background: #ff9a9e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: 100% 100%;
+    font-size: 12px;
+}
+
+.segment:nth-child(1) { transform: rotate(0deg) skewY(-45deg); }
+.segment:nth-child(2) { transform: rotate(90deg) skewY(-45deg); }
+.segment:nth-child(3) { transform: rotate(180deg) skewY(-45deg); }
+.segment:nth-child(4) { transform: rotate(270deg) skewY(-45deg); }
+
+/* Spin */
+.wheel {
+    transition: transform 3s ease-out;
+}
+
+/* Close button */
+.close-btn {
+    background: red;
+    color: white;
+}
+</style>
 </head>
+
 <body>
-  <h2>YouTube Video Trim & Download</h2>
 
-  <input id="url" placeholder="Paste YouTube video link here" />
-  <br>
-  <button onclick="loadVideo()">Load Video</button>
+<div class="container">
 
-  <div id="player"></div>
+<!-- HEADER -->
+<div class="header">
+    <h2><i class="fa-brands fa-instagram"></i> Purchase Instagram Growth</h2>
+    <div class="profile">👤</div>
+</div>
 
-  <div id="controls">
-    <div class="time">Start: <span id="startLabel">00:00</span></div>
-    <input type="range" id="start" min="0">
-    <input type="number" id="startInput" min="0">
+<!-- MENU -->
+<div id="menu" class="card">
+    <button onclick="selectFood('followers')">
+        <i class="fa-solid fa-users"></i> Followers
+    </button>
 
-    <div class="time">End: <span id="endLabel">00:00</span></div>
-    <input type="range" id="end" min="0">
-    <input type="number" id="endInput" min="0">
+    <button onclick="selectFood('likes')">
+        <i class="fa-solid fa-heart"></i> Likes
+    </button>
 
-    <br><br>
-    <button onclick="trim()">Trim & Download</button>
-    <div id="progress"></div>
-  </div>
+    <button onclick="selectFood('comments')">
+        <i class="fa-solid fa-message"></i> Comments
+    </button>
+</div>
 
-  <script src="script.js"></script>
+<!-- OPTIONS -->
+<!-- OPTIONS -->
+<div id="foodOptions" class="card hidden">
+    <h3 id="foodTitle"></h3>
+
+    <!-- FOLLOWERS OPTIONS -->
+    <div id="followersOptions" class="hidden">
+        <button onclick="selectOffer('₹30 - 40 Followers')">₹30 - 40 Followers</button>
+        <button onclick="selectOffer('₹60 - 120 Followers')">₹60 - 120 Followers</button>
+        <button onclick="selectOffer('₹120 - 300 Followers')">₹120 - 300 Followers</button>
+    </div>
+
+    <!-- LIKES OPTIONS -->
+    <div id="likesOptions" class="hidden">
+        <button onclick="selectOffer('₹30 - 100 Likes')">₹30 - 100 Likes</button>
+        <button onclick="selectOffer('₹60 - 300 Likes')">₹60 - 300 Likes</button>
+        <button onclick="selectOffer('₹120 - 700 Likes')">₹120 - 700 Likes</button>
+    </div>
+
+    <!-- COMMENTS OPTIONS -->
+    <div id="commentsOptions" class="hidden">
+        <button onclick="selectOffer('₹30 - 20 Comments')">₹30 - 20 Comments</button>
+        <button onclick="selectOffer('₹60 - 50 Comments')">₹60 - 50 Comments</button>
+        <button onclick="selectOffer('₹120 - 120 Comments')">₹120 - 120 Comments</button>
+    </div>
+
+</div>
+
+<!-- DETAILS -->
+<div id="details" class="card hidden">
+    <h3 id="offerText"></h3>
+    <p id="deliveryText"></p>
+    <button onclick="nextStep('form')">Continue</button>
+</div>
+
+<!-- FORM -->
+<div id="form" class="card hidden">
+    <h3>Your Details</h3>
+    <input type="text" id="name" placeholder="Enter Name">
+    <button onclick="nextStep('payment')">Proceed to Pay</button>
+</div>
+
+<!-- PAYMENT -->
+<div id="payment" class="card hidden">
+    <h3>Scan & Pay</h3>
+    <p>Use FamePay</p>
+
+    <img class="qr" 
+    src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=FamePayPremiumPayment">
+
+    <p id="successText" style="margin-top:10px;"></p>
+</div>
+
+<!-- INFO BOX -->
+<div class="card info-box">
+    <h3><i class="fa-solid fa-circle-info"></i> About Us</h3>
+    <p>We deliver Real & Genuine Likes, Followers at your Username within 24 hours </p>
+    <p>Fast service | Best quality | Trusted by users ❤️</p>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    <p>© 2026 Premium Food. All Rights Reserved.</p>
+</div>
+
+<!-- FLOAT BUTTON -->
+<div class="spin-fab" onclick="openSpin()">🎡</div>
+
+<!-- SPIN POPUP -->
+<div id="spinPopup" class="spin-popup hidden">
+    <div class="spin-box">
+
+        <h3>🎁 Spin & Win</h3>
+
+        <div class="wheel" id="wheel">
+            <div class="segment">₹10</div>
+            <div class="segment">₹50</div>
+            <div class="segment">Free 🍕</div>
+            <div class="segment">₹100</div>
+        </div>
+
+        <button onclick="spinWheel()">SPIN</button>
+        <p id="result"></p>
+
+        <button class="close-btn" onclick="closeSpin()">Close</button>
+
+    </div>
+</div>
+
+</div>
+
+<script>
+let selectedFood = "";
+
+/* FOOD SELECT */
+/* FOOD SELECT */
+function selectFood(food) {
+    selectedFood = food;
+    hideAll();
+
+    document.getElementById("foodOptions").classList.remove("hidden");
+
+    // sab hide karo pehle
+    document.getElementById("followersOptions").classList.add("hidden");
+    document.getElementById("likesOptions").classList.add("hidden");
+    document.getElementById("commentsOptions").classList.add("hidden");
+
+    // jo select hua wahi dikhao
+    if(food === "followers"){
+        document.getElementById("followersOptions").classList.remove("hidden");
+        document.getElementById("foodTitle").innerText = "Select Followers Plan";
+    }
+
+    if(food === "likes"){
+        document.getElementById("likesOptions").classList.remove("hidden");
+        document.getElementById("foodTitle").innerText = "Select Likes Plan";
+    }
+
+    if(food === "comments"){
+        document.getElementById("commentsOptions").classList.remove("hidden");
+        document.getElementById("foodTitle").innerText = "Select Comments Plan";
+    }
+}
+
+
+/* OFFER SELECT (SIMPLE DIRECT) */
+function selectOffer(text) {
+    hideAll();
+
+    document.getElementById("details").classList.remove("hidden");
+    document.getElementById("offerText").innerText = text;
+    document.getElementById("deliveryText").innerText =
+        "🚀 Your order will be completed within 24 hours";
+}
+
+/* NEXT STEP */
+function nextStep(id) {
+    hideAll();
+    document.getElementById(id).classList.remove("hidden");
+
+    if(id === "payment"){
+        document.getElementById("successText").innerText =
+        "✅ Your " + selectedFood + " order is placed successfully!";
+    }
+}
+
+/* HIDE ALL */
+function hideAll() {
+    document.getElementById("menu").classList.add("hidden");
+    document.getElementById("foodOptions").classList.add("hidden");
+    document.getElementById("details").classList.add("hidden");
+    document.getElementById("form").classList.add("hidden");
+    document.getElementById("payment").classList.add("hidden");
+}
+
+/* SPIN */
+function openSpin(){
+    let popup = document.getElementById("spinPopup");
+    popup.classList.remove("hidden");
+    popup.style.display = "flex";
+}
+
+function closeSpin(){
+    let popup = document.getElementById("spinPopup");
+    popup.style.display = "none";
+}
+
+function spinWheel() {
+    let wheel = document.getElementById("wheel");
+    let result = document.getElementById("result");
+
+    let randomDeg = Math.floor(3000 + Math.random() * 1000);
+    wheel.style.transform = "rotate(" + randomDeg + "deg)";
+
+    let prizes = ["₹10", "₹50", "Free Pizza 🍕", "₹100"];
+    let win = prizes[Math.floor(Math.random() * prizes.length)];
+
+    setTimeout(() => {
+        result.innerText = "🎉 You won: " + win;
+    }, 3000);
+}
+</script>
+
 </body>
 </html>
