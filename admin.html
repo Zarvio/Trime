@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="growly.png">
+<title>Admin Panel</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins", sans-serif;
+}
+
+body{
+    background: linear-gradient(
+        180deg,
+        #1f1c2c 0%,
+        #3a3555 30%,
+        #6f6a8a 60%,
+        #928dab 100%
+    );
+    color:white;
+    padding:15px;
+    min-height:100vh;
+}
+
+/* HEADER */
+h2{
+    text-align:center;
+    margin-bottom:20px;
+    font-size:20px;
+}
+
+/* CARD */
+.card{
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+    padding:15px;
+    margin-bottom:15px;
+    border-radius:15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    animation: fadeIn 0.3s ease;
+}
+
+/* TEXT */
+.card p{
+    margin:6px 0;
+    font-size:14px;
+}
+
+/* USERNAME */
+.username{
+    font-weight:bold;
+    color:#ffb3c6;
+}
+
+/* BUTTON */
+button{
+    width:100%;
+    padding:10px;
+    margin-top:10px;
+    border:none;
+    border-radius:10px;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    color:black;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:active{
+    transform:scale(0.95);
+}
+
+/* EMPTY */
+.empty{
+    text-align:center;
+    opacity:0.7;
+    margin-top:50px;
+}
+
+/* ANIMATION */
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+}
+/* TOAST */
+#toast{
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    opacity: 0;
+    transition: 0.4s;
+    backdrop-filter: blur(10px);
+}
+
+#toast.show{
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+</style>
+</head>
+
+<body>
+
+<h2>📊 Orders</h2>
+
+<div id="orders"></div>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+<script>
+    
+const firebaseConfig = {
+  apiKey: "AIzaSyDUefeJbHKIAs-l3zvFlGaas6VD63vv4kI",
+  authDomain: "inspire4ever-c60ad.firebaseapp.com",
+  projectId: "inspire4ever-c60ad"
+};
+
+firebase.initializeApp(firebaseConfig);
+let container = document.getElementById("orders");
+
+firebase.database().ref("orders").on("value", (snapshot) => {
+
+    container.innerHTML = "";
+
+    let data = snapshot.val();
+
+    if(!data){
+        container.innerHTML = "<div class='empty'>No Orders Yet 😴</div>";
+        return;
+    }
+
+    let orders = Object.values(data).reverse();
+
+    orders.forEach(order => {
+
+        let div = document.createElement("div");
+        div.className = "card";
+
+        div.innerHTML = `
+            <p><b>Type:</b> ${order.type.toUpperCase()}</p>
+            <p><b>Offer:</b> ${order.offer}</p>
+            <p><b>Username:</b> <span class="username">@${order.username}</span></p>
+            <button onclick="copyText('${order.username}')">Copy Username</button>
+        `;
+
+        container.appendChild(div);
+    });
+
+});
+
+function copyText(text){
+    navigator.clipboard.writeText(text);
+
+    let toast = document.getElementById("toast");
+    toast.innerText = "Copied: @" + text;
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2000);
+}
+
+</script>
+
+<div id="toast">Copied ✅</div>
+</body>
+</html>
