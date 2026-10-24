@@ -1,125 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chapter Quiz</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Trenndly creates YouTube titles, tags, hashtags and keywords from your video.">
+  <title>Trenndly: YouTube tags, titles and keywords from your video</title>
+  <style>
+    :root { color-scheme: light dark; --bg:#fafafa; --panel:#fff; --text:#14161c; --muted:#5b6272; --accent:#d92d20; --border:#e4e6eb; }
+    @media (prefers-color-scheme: dark) { :root { --bg:#0b0d12; --panel:#121620; --text:#f4f6fb; --muted:#aab2c2; --accent:#ff4a58; --border:#252c3a; } }
+    * { box-sizing: border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font:17px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
+    .wrap { width:min(760px, calc(100% - 32px)); margin:0 auto; }
+    header { padding:24px 0; border-bottom:1px solid var(--border); }
+    .brand { font-size:1.35rem; font-weight:800; letter-spacing:-.04em; }
+    .brand span { color:var(--accent); }
+    main { padding:64px 0 48px; }
+    h1 { font-size:clamp(2rem,6vw,3.2rem); line-height:1.12; letter-spacing:-.04em; margin:0 0 18px; }
+    p { margin:0 0 16px; color:var(--muted); max-width:62ch; }
+    .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; padding:13px 24px; border-radius:10px; margin-top:8px; }
+    .btn:focus-visible, a:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
+    .how { margin-top:48px; border-top:1px solid var(--border); padding-top:28px; }
+    h2 { font-size:1.2rem; margin:0 0 10px; }
+    ul { padding-left:22px; margin:0; color:var(--muted); }
+    li { margin:6px 0; }
+    footer { border-top:1px solid var(--border); padding:22px 0 32px; font-size:.9rem; color:var(--muted); }
+    footer a { color:var(--text); margin-right:18px; }
+  </style>
 </head>
 <body>
+  <header><div class="wrap brand">Trennd<span>ly</span></div></header>
+  <main class="wrap">
+    <h1>Upload a video. Get YouTube titles, tags, hashtags and keywords.</h1>
+    <p>Trenndly watches your video with AI and writes the SEO details for it, so you can copy them straight into YouTube. Sign in with Google or with your email.</p>
+    <a class="btn" href="https://zarvio.github.io/GIF">Open Trenndly</a>
 
-<!-- ===== Site header: icon-only Google login / profile — always visible ===== -->
-<header class="site-header">
-  <span class="site-logo">📚 Chapter Quiz</span>
-
-  <div class="auth-area">
-    <!-- Single icon button. Default = generic account icon.
-         After login this <img> src is swapped to the user's Google photo. -->
-    <button id="authIconBtn" class="auth-icon-btn" aria-label="Account">
-      <img id="authIcon" class="auth-icon-img"
-           src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%2321252E'/%3E%3Ccircle cx='12' cy='9.5' r='4' fill='%239AA1AF'/%3E%3Cpath d='M4 20c1.2-4 4.2-6 8-6s6.8 2 8 6' fill='%239AA1AF'/%3E%3C/svg%3E"
-           alt="Account">
-    </button>
-
-    <!-- Login popup (shown when icon clicked while logged out) -->
-    <div id="loginPopup" class="popup-overlay" hidden>
-      <div class="popup-box">
-        <button id="closeLoginPopup" class="popup-close" aria-label="Close">&times;</button>
-        <h2 class="popup-title">Sign in</h2>
-        <button id="googleLoginBtn" class="google-btn">
-          <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true">
-            <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.9 32.6 29.4 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l6-6C34.5 6 29.5 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"/>
-            <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.9 18.9 13 24 13c3.1 0 5.8 1.1 8 3l6-6C34.5 6 29.5 4 24 4c-7.7 0-14.3 4.4-17.7 10.7z"/>
-            <path fill="#4CAF50" d="M24 44c5.3 0 10.1-2 13.7-5.4l-6.3-5.3C29.4 35 26.8 36 24 36c-5.4 0-9.9-3.4-11.5-8.2l-6.5 5C9.6 39.6 16.2 44 24 44z"/>
-            <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-1 3-3.2 5.4-6 6.9l6.3 5.3C39.7 37.1 44 31.4 44 24c0-1.3-.1-2.7-.4-3.5z"/>
-          </svg>
-          <span>Continue with Google</span>
-        </button>
-      </div>
+    <div class="how">
+      <h2>What you get from each video</h2>
+      <ul>
+        <li>Up to 25 tags that fit YouTube's 500 character limit</li>
+        <li>20 hashtags and a list of search keywords</li>
+        <li>5 title ideas, with the character count of each</li>
+        <li>A history of your last 7 days of results</li>
+      </ul>
     </div>
-
-    <!-- Profile dropdown (shown when icon clicked while logged in) -->
-    <div id="profileDropdown" class="profile-dropdown" hidden>
-      <p id="userName" class="dropdown-name"></p>
-      <button id="logoutBtn" class="logout-btn">Logout</button>
-    </div>
-  </div>
-</header>
-
-<div class="app-shell">
-
-  <!-- Top bar: only visible once a chapter is open -->
-  <header class="topbar" id="topbar" hidden>
-    <button class="back-btn" id="backBtn" aria-label="Go back">&larr; Back</button>
-    <div class="topbar-title">
-      <span class="eyebrow" id="crumbs"></span>
-      <h1 id="chapterTitle"></h1>
-    </div>
-    <button class="reset-btn" id="resetProgressBtn" title="Clear saved progress for this chapter">Reset</button>
-    <a class="download-btn" id="downloadPdfBtn" href="#" download>
-      <span>Download PDF</span>
-    </a>
-  </header>
-
-  <main id="app">
-
-    <!-- SCREEN 1: Subject selection -->
-    <section class="screen" id="screen-subject">
-      <p class="eyebrow">Step 1</p>
-      <h1 class="page-title">Choose a Subject</h1>
-      <div class="grid" id="subjectGrid"></div>
-    </section>
-
-    <!-- SCREEN 2: Book selection -->
-    <section class="screen" id="screen-book" hidden>
-      <p class="eyebrow" id="bookCrumb"></p>
-      <h1 class="page-title">Choose a Book</h1>
-      <div class="grid" id="bookGrid"></div>
-    </section>
-
-    <!-- SCREEN 3: Chapter selection -->
-    <section class="screen" id="screen-chapter" hidden>
-      <p class="eyebrow" id="chapterCrumb"></p>
-      <h1 class="page-title">Choose a Chapter</h1>
-      <ul class="toc" id="chapterList"></ul>
-    </section>
-
-    <!-- SCREEN 4: Quiz -->
-    <section class="screen" id="screen-quiz" hidden>
-      <div class="quiz-card">
-        <p class="q-number" id="qNumber">Question 1</p>
-        <p class="q-text q-en" id="qTextEn"></p>
-        <p class="q-text q-hi" id="qTextHi"></p>
-
-        <div class="options" id="optionsBox"></div>
-
-        <p class="feedback" id="feedback"></p>
-
-        <div class="quiz-footer">
-          <button class="prev-btn" id="prevBtn">&larr; Previous</button>
-          <button class="next-btn" id="nextBtn" hidden>Next Question &rarr;</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- SCREEN 5: Finished -->
-    <section class="screen" id="screen-done" hidden>
-      <h1 class="page-title">Chapter Complete 🎉</h1>
-      <p class="q-text">You've answered every question in this chapter.</p>
-      <p class="score-line" id="scoreLine"></p>
-      <button class="next-btn" id="restartBtn">Restart Chapter</button>
-    </section>
-
   </main>
-</div>
-
-<!-- Firebase (compat SDK — matches the auth.js code style) -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-
-<script src="auth.js"></script>
-<script src="questions.js"></script>
-<script src="script.js"></script>
+  <footer>
+    <div class="wrap">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="mailto:ds957117122@gmail.com">Contact</a>
+      <p style="margin-top:14px">© 2026 Trenndly</p>
+    </div>
+  </footer>
 </body>
 </html>
