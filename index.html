@@ -1,55 +1,598 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Trenndly creates YouTube titles, tags, hashtags and keywords from your video.">
-  <title>Trenndly: YouTube tags, titles and keywords from your video</title>
-  <style>
-    :root { color-scheme: light dark; --bg:#fafafa; --panel:#fff; --text:#14161c; --muted:#5b6272; --accent:#d92d20; --border:#e4e6eb; }
-    @media (prefers-color-scheme: dark) { :root { --bg:#0b0d12; --panel:#121620; --text:#f4f6fb; --muted:#aab2c2; --accent:#ff4a58; --border:#252c3a; } }
-    * { box-sizing: border-box; }
-    body { margin:0; background:var(--bg); color:var(--text); font:17px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif; }
-    .wrap { width:min(760px, calc(100% - 32px)); margin:0 auto; }
-    header { padding:24px 0; border-bottom:1px solid var(--border); }
-    .brand { font-size:1.35rem; font-weight:800; letter-spacing:-.04em; }
-    .brand span { color:var(--accent); }
-    main { padding:64px 0 48px; }
-    h1 { font-size:clamp(2rem,6vw,3.2rem); line-height:1.12; letter-spacing:-.04em; margin:0 0 18px; }
-    p { margin:0 0 16px; color:var(--muted); max-width:62ch; }
-    .btn { display:inline-block; background:var(--accent); color:#fff; text-decoration:none; font-weight:700; padding:13px 24px; border-radius:10px; margin-top:8px; }
-    .btn:focus-visible, a:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
-    .how { margin-top:48px; border-top:1px solid var(--border); padding-top:28px; }
-    h2 { font-size:1.2rem; margin:0 0 10px; }
-    ul { padding-left:22px; margin:0; color:var(--muted); }
-    li { margin:6px 0; }
-    footer { border-top:1px solid var(--border); padding:22px 0 32px; font-size:.9rem; color:var(--muted); }
-    footer a { color:var(--text); margin-right:18px; }
-  </style>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8738128191861011"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trenndly – YouTube Tags, Hashtags &amp; Titles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script>try{if(localStorage.getItem("trendly_auth")==="1")document.documentElement.classList.add("was-in");var th=localStorage.getItem("trendly_theme");if(th==="dark"||th==="light")document.documentElement.dataset.theme=th}catch(e){}</script>
+<link rel="icon" type="image/png" sizes="any" href="/assets/logo-Dxp94-R5.png?v=2">
+<link rel="shortcut icon" type="image/png" href="/assets/logo-Dxp94-R5.png?v=2">
+<link rel="apple-touch-icon" href="/assets/logo-Dxp94-R5.png?v=2">
+<meta name="theme-color" content="#10A37F">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
+  <link rel="stylesheet" crossorigin href="/assets/main-bjo78AzT.css">
 </head>
 <body>
-  <header><div class="wrap brand">Trennd<span>ly</span></div></header>
-  <main class="wrap">
-    <h1>Upload a video. Get YouTube titles, tags, hashtags and keywords.</h1>
-    <p>Trenndly watches your video with AI and writes the SEO details for it, so you can copy them straight into YouTube. Sign in with Google or with your email.</p>
-    <a class="btn" href="https://zarvio.github.io/">Open Trenndly</a>
 
-    <div class="how">
-      <h2>What you get from each video</h2>
-      <ul>
-        <li>Up to 25 tags that fit YouTube's 500 character limit</li>
-        <li>20 hashtags and a list of search keywords</li>
-        <li>5 title ideas, with the character count of each</li>
-        <li>A history of your last 7 days of results</li>
-      </ul>
+<!-- ============ HOME ============ -->
+<div id="homeView">
+  <header class="top">
+    <div class="left">
+      <span class="sk-ic" id="skMenu" aria-hidden="true"></span>
+      <button class="menu-btn hidden" id="menuBtn" aria-label="Open menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+      </button>
+      <a class="brand" href="#" id="brandHome"><img class="logo" src="/assets/logo-Dxp94-R5.png" alt="Trenndly logo">Trenndly</a>
+    </div>
+
+    <div class="right">
+      <button class="icon-btn theme-btn hidden" id="themeBtn" aria-label="Switch theme">
+        <svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+
+      <div id="guestActions" class="actions">
+        <button class="btn ghost" id="openLogin">Log in</button>
+        <button class="btn" id="openSignup">Sign up</button>
+      </div>
+
+      <span class="sk-av" id="skAvatar" aria-hidden="true"></span>
+      <div id="userMenu" class="usermenu hidden">
+        <button class="avatar" id="avatarBtn" aria-haspopup="true" aria-expanded="false" aria-label="Account menu"></button>
+        <div class="pop hidden" id="pop" role="menu">
+          <div class="pop-email" id="popEmail"></div>
+          <a class="pop-item hidden" id="adminLink" href="admin.html" role="menuitem">Admin panel</a>
+          <button class="pop-item" id="logoutBtn" role="menuitem">Log out</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="glow" aria-hidden="true"></div>
+
+    <button class="whatsnew hidden" id="wnew" aria-label="Dismiss update notice">
+      <span class="new-badge">New</span>
+      <span>SEO score, copy all, dark mode</span>
+      <i class="wn-x" aria-hidden="true">&times;</i>
+    </button>
+
+    <h1 class="headline" id="heroTitle">What video are we optimizing today?</h1>
+    <p class="sub" id="heroSub">Tags, hashtags and titles for YouTube</p>
+
+    <!-- Mode switch: Suggestion (hook check) <-> Tags & Hashtags. The label swaps when you click it. -->
+    <div class="modebar">
+      <button class="modebtn" id="modeBtn" type="button" aria-label="Switch mode">
+        <span class="mode-ic" id="modeIc" aria-hidden="true"><i class="fa-solid fa-lightbulb"></i></span>
+        <span id="modeLbl">Suggestion</span>
+      </button>
+      <button class="modebtn" id="ctBtn" type="button" aria-label="Competitor tools">
+  <span class="mode-ic" id="ctIc" aria-hidden="true"><i class="fa-solid fa-chart-line"></i></span>
+  <span id="ctLbl">Competitor</span>
+        <button class="modebtn" id="pBtn" type="button" aria-label="AI video prompt">
+        <span class="mode-ic" id="pIc" aria-hidden="true"><i class="fa-solid fa-film"></i></span>
+        <span id="pLbl">Video Prompt</span>
+      </button>
+</button>
+    </div>
+
+    <div class="drop" id="drop">
+      <input type="file" id="file" accept="video/*" class="hidden">
+      <div class="drop-empty" id="dropEmpty">
+        <p id="dropText">Drag and drop a video here (max <span class="maxmb">300</span> MB)</p>
+        <button class="btn dark" id="pick">Choose video</button>
+      </div>
+      <div class="fname" id="fname"></div>
+      <div class="preview" id="preview"></div>
+    </div>
+
+    <!-- Competitor box: 2 tabs + 1 ya 2 links (box ka size wahi) -->
+<div class="drop ct-drop hidden" id="ctInput">
+  <div class="ct-box">
+    <div class="ct-tabs" id="ctTabs">
+      <button type="button" class="ct-tab" data-sub="tags"><i class="fa-solid fa-magnifying-glass"></i> Tag Finder</button>
+      <button type="button" class="ct-tab" data-sub="plan"><i class="fa-solid fa-calendar-days"></i> Channel Planner</button>
+    </div>
+    <div class="ct-row">
+      <input id="ctUrl" type="text" inputmode="url" autocomplete="off" placeholder="Your video link" aria-label="Your video link">
+      <input id="ctUrl2" type="text" inputmode="url" autocomplete="off" placeholder="Competitor video link" aria-label="Competitor video link">
+      <button class="btn" id="ctGo">Compare tags</button>
+    </div>
+  </div>
+</div>
+<!-- Video Prompt box -->
+<div class="drop pm-drop hidden" id="pmInput">
+  <input type="file" id="pmFile" accept="video/*" class="hidden">
+  <div class="pm-box">
+    <div class="pm-vid">
+      <button type="button" class="btn sm ghost" id="pmPick"><i class="fa-solid fa-video"></i> Add a video (optional)</button>
+      <span class="pm-fname hidden" id="pmFname"></span>
+      <button type="button" class="pm-x hidden" id="pmClear" aria-label="Remove video">&times;</button>
+    </div>
+    <textarea id="pmDesc" maxlength="1500" placeholder="Describe your idea (optional)"></textarea>
+        <div class="pm-dur">
+      <span class="pm-lbl">Scene length</span>
+      <div class="seg" id="pmDur">
+        <button type="button" class="on" data-s="8">8 sec</button>
+        <button type="button" data-s="10">10 sec</button>
+      </div>
+      <input id="pmSecs" type="text" inputmode="numeric" maxlength="2" placeholder="Custom" autocomplete="off" aria-label="Custom scene length in seconds">
+    </div>
+    <div class="pm-opts">
+      <div class="seg" id="pmFmt">
+        <button type="button" class="on" data-f="tall">Vertical 9:16</button>
+        <button type="button" data-f="wide">Wide 16:9</button>
+      </div>
+      <button class="btn" id="pmGo" disabled>Make prompt</button>
+    </div>
+  </div>
+</div>
+<!-- Saved mode ko page dikhne se pehle hi lagao, taaki load par heading aur boxes na badlein -->
+<script>
+(function () {
+  try {
+    var m = localStorage.getItem("trendly_mode");
+    if (m !== "hook" && m !== "ct" && m !== "prompt") return;
+    var FILM = '<i class="fa-solid fa-film"></i>', HASH = '<i class="fa-solid fa-hashtag"></i>',
+        BULB = '<i class="fa-solid fa-lightbulb"></i>', CHART = '<i class="fa-solid fa-chart-line"></i>';
+    var T = {
+      hook: { t: "How strong is your video's hook?", s: "Score your hook and get stronger lines",
+              tg: "Tags & Hashtags", ti: HASH, cl: "Competitor", ci: CHART, pl: "Video Prompt", pi: FILM },
+      ct:   { t: "Compare your video with a competitor", s: "Find the tags your competitor is using",
+              tg: "Suggestion", ti: BULB, cl: "Tags & Hashtags", ci: HASH, pl: "Video Prompt", pi: FILM },
+      prompt: { t: "Turn any idea into an AI video prompt", s: "Add a video, an idea, or both",
+              tg: "Suggestion", ti: BULB, cl: "Competitor", ci: CHART, pl: "Tags & Hashtags", pi: HASH }
+    }[m];
+    var g = function (i) { return document.getElementById(i); };
+    g("heroTitle").textContent = T.t;
+    g("heroSub").textContent = T.s;
+    g("modeLbl").textContent = T.tg;  g("modeIc").innerHTML = T.ti;
+    g("ctLbl").textContent = T.cl;    g("ctIc").innerHTML = T.ci;
+    g("pLbl").textContent = T.pl;     g("pIc").innerHTML = T.pi;
+    if (m === "hook") g("modeBtn").classList.add("is-hook");
+    if (m === "prompt") {
+      g("pBtn").classList.add("is-hook");
+      g("drop").classList.add("hidden");
+      g("pmInput").classList.remove("hidden");
+    }
+    if (m === "ct") {
+      g("ctBtn").classList.add("is-hook");
+      g("drop").classList.add("hidden");
+      g("ctInput").classList.remove("hidden");
+      var c = JSON.parse(localStorage.getItem("trendly_ct") || "{}");
+      if (c.sub === "tags" || c.sub === "plan") {
+        var P = {
+          tags: { t: "Find the tags of any YouTube video", s: "Paste a link to see its tags and stats", p: "https://youtube.com/watch?v=…" },
+          plan: { t: "Plan the best days to upload videos", s: "Find the best day to upload your video", p: "Channel link or @handle" }
+        }[c.sub];
+        g("heroTitle").textContent = P.t;
+        g("heroSub").textContent = P.s;
+        g("ctUrl").placeholder = P.p;
+        g("ctUrl2").classList.add("hidden");
+        var tb = document.querySelector('#ctTabs [data-sub="' + c.sub + '"]');
+        if (tb) tb.classList.add("on");
+      }
+    }
+  } catch (e) {}
+})();
+</script>
+    <div class="btnrow hidden" id="btnRow">
+      <button class="btn" id="go">Analyze video</button>
+      <button class="btn ghost" id="again">Upload another video</button>
+    </div>
+    <div class="err hidden" id="errBox" role="alert"></div>
+
+    <div class="skel hidden" id="skel" aria-live="polite">
+      <div class="loader-card">
+        <div class="strip">
+          <i class="fr"></i><i class="fr"></i><i class="fr"></i><i class="fr"></i><i class="fr"></i><i class="fr"></i>
+          <b class="scan"></b>
+        </div>
+        <div class="wave" id="wave" aria-hidden="true"></div>
+        <ul class="ls" id="ls">
+          <li><span class="ic"></span>Reading your video</li>
+          <li><span class="ic"></span>Watching every scene</li>
+          <li><span class="ic"></span>Listening to the audio</li>
+          <li><span class="ic"></span>Writing tags and titles</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===== Results: tags mode ===== -->
+    <div class="results hidden" id="results">
+      <div class="box score">
+        <div class="ring">
+          <svg viewBox="0 0 44 44" aria-hidden="true"><circle class="rt" cx="22" cy="22" r="19"/><circle class="rf" id="ringFill" cx="22" cy="22" r="19"/></svg>
+          <b id="scoreNum">0</b>
+        </div>
+        <div class="score-txt">
+          <h3>SEO score</h3>
+          <p id="scoreMsg"></p>
+        </div>
+        <button class="btn sm" id="copyAll">Copy all</button>
+      </div>
+      <div class="box">
+        <header><h3>Tags<small id="tagsInfo"></small></h3><button class="btn sm ghost" data-copy="tags">Copy</button></header>
+        <textarea id="tags" readonly></textarea>
+        <div class="tagchips" id="tagChips"></div>
+        <p class="chip-hint">Using the YouTube mobile app? Tap a tag to copy it, then paste it as a single tag.</p>
+      </div>
+      <div class="box">
+        <header><h3>Hashtags<small id="hashInfo"></small></h3><button class="btn sm ghost" data-copy="hashtags">Copy</button></header>
+        <textarea id="hashtags" readonly></textarea>
+      </div>
+      <div class="box">
+        <header><h3>Keywords<small id="kwInfo"></small></h3><button class="btn sm ghost" data-copy="keywords">Copy</button></header>
+        <textarea id="keywords" readonly></textarea>
+      </div>
+      <div class="box">
+        <header><h3>Titles<small>5 titles</small></h3></header>
+        <ul class="titles" id="titles"></ul>
+      </div>
+    </div>
+
+    <!-- ===== Results: suggestion mode (hook score + stronger hook lines) ===== -->
+    <div class="results hidden" id="hookResults">
+      <div class="box score">
+        <div class="ring">
+          <svg viewBox="0 0 44 44" aria-hidden="true"><circle class="rt" cx="22" cy="22" r="19"/><circle class="rf" id="hRingFill" cx="22" cy="22" r="19"/></svg>
+          <b id="hScoreNum">0</b>
+        </div>
+        <div class="score-txt">
+          <h3>Hook score</h3>
+          <p id="hScoreMsg"></p>
+          <p class="hverdict" id="hVerdict"></p>
+        </div>
+      </div>
+
+      <div class="box hnote hidden" id="hNote" role="status"></div>
+
+      <div class="box">
+        <header><h3>Your current hook<small id="hLang"></small></h3></header>
+        <p class="hcur" id="hCurrent"></p>
+        <div class="plists">
+          <div><div class="plist-h">What works</div><ul class="plist good" id="hGood"></ul></div>
+          <div><div class="plist-h">What to fix</div><ul class="plist bad" id="hBad"></ul></div>
+        </div>
+      </div>
+
+      <div class="box hidden" id="hSuggestBox">
+        <header><h3>Stronger hook lines<small>tap Copy to use one</small></h3></header>
+        <ul class="titles hooks" id="hHooks"></ul>
+      </div>
+
+      <div class="box hidden" id="hTipsBox">
+        <header><h3>Quick tips</h3></header>
+        <ul class="tips" id="hTips"></ul>
+      </div>
+
+      <div class="box hidden" id="hTrendBox">
+        <header><h3>Trending searches on your topic<small>YouTube, Google, DuckDuckGo</small></h3></header>
+        <div class="tagchips trend" id="hTrend"></div>
+        <p class="chip-hint">Tap a phrase to copy it.</p>
+      </div>
+    </div>
+    <!-- ===== Video Prompt results ===== -->
+    <div class="results hidden" id="pmResults">
+      <div class="box">
+        <header><h3><span id="pmTitle">Your video plan</span><small id="pmMeta"></small></h3></header>
+        <p class="hcur" id="pmSummary"></p>
+      </div>
+                 <div class="box hidden" id="pmSheetBox">
+        <header><h3>Step 1: Reference image<small>one image with everything</small></h3><button class="btn sm ghost" data-copy="pmSheet">Copy</button></header>
+        <textarea id="pmSheet" readonly></textarea>
+      </div>
+      <div class="pm-guide hidden" id="pmGuide">
+        <h3>How to use these prompts</h3>
+        <ol class="tips">
+          <li>Copy the reference prompt above and paste it in any AI image tool. Make 1 image.</li>
+          <li>Save that image. In your AI video tool, attach it as the reference image for every scene.</li>
+          <li>Now copy the scene prompts below one by one and generate each clip. The character, place and items will stay the same.</li>
+        </ol>
+      </div>
+      <div class="box hidden" id="pmSeenBox">
+        <header><h3>What I understood from your video</h3></header>
+        <ul class="tips" id="pmSeen"></ul>
+      </div>
+      <div class="box">
+        <header><h3>Script, scene by scene<small id="pmSceneInfo"></small></h3><button class="btn sm ghost" id="pmCopyAll">Copy all prompts</button></header>
+        <div class="pm-scenes" id="pmScenes"></div>
+      </div>
+
+      <div class="box hidden" id="pmAvoidBox">
+        <header><h3>Negative prompt<small>optional</small></h3><button class="btn sm ghost" data-copy="pmAvoid">Copy</button></header>
+        <textarea id="pmAvoid" readonly></textarea>
+      </div>
+      <div class="box hidden" id="pmTipsBox">
+        <header><h3>Quick tips</h3></header>
+        <ul class="tips" id="pmTips"></ul>
+      </div>
+    </div>
+    <!-- ===== Tag Finder results ===== -->
+    <div class="results hidden" id="ctResults">
+      <div class="box ct-video" id="ctVideo">
+        <a class="ct-thumb" id="ctThumb" href="#" target="_blank" rel="noopener noreferrer" aria-label="Open video on YouTube">
+          <img id="ctThumbImg" alt="" referrerpolicy="no-referrer">
+          <span class="ct-play" aria-hidden="true"><i class="fa-solid fa-play"></i></span>
+        </a>
+        <div class="ct-meta">
+          <h3 class="ct-vtitle" id="ctVTitle"></h3>
+          <p class="ct-chan" id="ctChan"></p>
+          <p class="ct-when" id="ctWhen"></p>
+          <div class="ct-stats" id="ctStats"></div>
+           <button class="btn sm ghost ct-dl" id="ctDl" type="button" disabled>Download thumbnail</button>
+        </div>
+      </div>
+<!-- Competitor compare result -->
+<div class="ct-body hidden" id="cmpBody">
+  <div class="box">
+    <header><h3>Comparison</h3></header>
+    <p class="hcur" id="cmpMsg"></p>
+    <p class="chip-hint" id="cmpSub"></p>
+  </div>
+  <div class="box" id="cmpMissBox">
+    <header><h3>Tags you are missing<small id="cmpMissInfo"></small></h3><button class="btn sm ghost" data-copy="cmpMiss">Copy</button></header>
+    <textarea id="cmpMiss" readonly></textarea>
+    <div class="tagchips" id="cmpMissChips"></div>
+    <p class="chip-hint">Tap a tag to copy it. Add only the tags that really match your video.</p>
+  </div>
+  <div class="box" id="cmpCommonBox">
+    <header><h3>Tags you both use</h3></header>
+    <div class="tagchips trend" id="cmpCommonChips"></div>
+  </div>
+  <div class="box" id="cmpMineBox">
+    <header><h3>Only you use these</h3></header>
+    <div class="tagchips trend" id="cmpMineChips"></div>
+  </div>
+</div>
+
+<!-- Channel Planner result -->
+<div class="ct-body hidden" id="planBody">
+  <div class="box">
+    <header><h3>Your upload plan<small id="planInfo"></small></h3></header>
+    <p class="hcur" id="planMsg"></p>
+    <p class="chip-hint" id="planTip"></p>
+  </div>
+  <div class="box">
+    <header><h3>Day by day</h3></header>
+    <ul class="ct-info" id="planDays"></ul>
+    <p class="chip-hint">Best day = the weekday whose videos got the most views on average. Times are in IST.</p>
+  </div>
+</div>
+            <div class="ct-body hidden" id="ctBody">
+        <div class="box">
+          <header><h3>Tags<small id="ctTagInfo"></small></h3><button class="btn sm ghost" data-copy="ctTags">Copy</button></header>
+          <textarea id="ctTags" readonly></textarea>
+          <div class="tagchips" id="ctTagChips"></div>
+          <p class="chip-hint">Tap a tag to copy it one by one.</p>
+        </div>
+        <div class="box">
+          <header><h3>Description<small id="ctDescInfo"></small></h3><button class="btn sm ghost" data-copy="ctDesc">Copy</button></header>
+          <textarea id="ctDesc" readonly></textarea>
+        </div>
+        <div class="box">
+          <header><h3>More details</h3></header>
+          <ul class="ct-info" id="ctInfo"></ul>
+          <p class="chip-hint">Viral score = views ÷ subscribers. Above 1x means the video reached more people than the channel's subscriber count.</p>
+        </div>
+      </div>
     </div>
   </main>
-  <footer>
-    <div class="wrap">
-      <a href="privacy.html">Privacy Policy</a>
-      <a href="mailto:ds957117122@gmail.com">Contact</a>
-      <p style="margin-top:14px">© 2026 Trenndly</p>
+
+  <section class="sec" id="how">
+    <h2 class="rv">How it works</h2>
+    <div class="steps">
+      <div class="step rv"><b>1</b><h3>Upload your video</h3><p>Choose any video up to <span class="maxmb">300</span> MB from your phone or computer.</p></div>
+      <div class="step rv"><b>2</b><h3>AI watches it fully</h3><p>Trenndly reviews the visuals and the audio to understand your content.</p></div>
+      <div class="step rv"><b>3</b><h3>Copy and publish</h3><p>Get ready-to-use SEO data and paste it straight into YouTube.</p></div>
     </div>
+  </section>
+
+  <section class="sec" id="features">
+    <h2 class="rv">Everything you need to rank</h2>
+    <div class="cards">
+      <article class="card rv"><h3>Smart tags</h3><p>10 to 15 tags that mix short and long-tail searches, with a live character counter.</p></article>
+      <article class="card rv"><h3>20 hashtags</h3><p>Relevant hashtags matched to your niche and ready to paste.</p></article>
+      <article class="card rv"><h3>Search keywords</h3><p>Phrases people actually type into YouTube search.</p></article>
+      <article class="card rv"><h3>5 click-worthy titles</h3><p>Honest, catchy titles under 70 characters, with a length check on each.</p></article>
+      <article class="card rv"><h3>SEO score</h3><p>See an instant score for your results and copy everything in one tap.</p></article>
+      <article class="card rv"><h3>Hook check</h3><p>Use Suggestion to score your video's hook and get stronger opening lines.</p></article>
+      <article class="card rv"><h3>Tag Finder</h3><p>Paste any YouTube link and see its tags, stats and description instantly.</p></article>
+      <article class="card rv"><h3>Sees and hears</h3><p>Analysis uses both what appears on screen and what is said.</p></article>
+      <article class="card rv"><h3>Private by design</h3><p>Your video is deleted automatically as soon as the analysis finishes.</p></article>
+    </div>
+  </section>
+
+  <section class="sec narrow" id="faq">
+    <h2 class="rv">Frequently asked questions</h2>
+    <details class="rv"><summary>Is Trenndly free to use?</summary><p>Yes. Every account gets free coins each day. Analyzing a video costs 10 coins and a hook suggestion costs 5 coins.</p></details>
+    <details class="rv"><summary>What happens to my video?</summary><p>It is used only for analysis and is deleted automatically as soon as the analysis finishes.</p></details>
+    <details class="rv"><summary>What does Suggestion do?</summary><p>It scores your video's hook and, if the score is below 90, writes stronger opening lines in your video's language.</p></details>
+    <details class="rv"><summary>What is Tag Finder?</summary><p>Paste any public YouTube video link and see its thumbnail, tags, views, likes, comments, subscribers, upload time, language and description. It costs no coins and is saved in your History.</p></details>
+    <details class="rv"><summary>What video size is supported?</summary><p>Videos up to <span class="maxmb">300</span> MB in any common format.</p></details>
+    <details class="rv"><summary>Why do I need to log in?</summary><p>An account keeps the service secure and prevents misuse.</p></details>
+  </section>
+
+    <footer class="foot">
+    <a class="brand" href="#"><img class="logo" src="/assets/logo-Dxp94-R5.png" alt="">Trenndly</a>
+    <a href="https://zarvio.github.io/GIF/privacy-policy.html" class="foot-link" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    <a href="#" class="foot-link hidden" id="fbLink">Contact us</a>
+    <span>&copy; <span id="yr"></span> Trenndly. All rights reserved.</span>
   </footer>
+  <button class="fab hidden" id="fbOpen" aria-label="Share a problem or feedback">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span>Feedback</span>
+  </button>
+</div>
+
+<!-- ============ HISTORY PAGE ============ -->
+<section id="historyView" class="hidden">
+  <header class="top">
+    <div class="left">
+      <button class="menu-btn" id="hBack" aria-label="Back">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+      </button>
+      <span class="brand">History</span>
+    </div>
+  </header>
+  <div class="hmain">
+    <div class="note">Your history is saved for 7 days only. After that it is deleted automatically</div>
+    <div class="seg" id="hFilter">
+  <button class="on" data-f="tags">Analyze</button>
+  <button data-f="hook">Suggestion</button>
+  <button data-f="ct">Tag Finder</button>
+  <button data-f="cmp">Competitor</button>
+    <button data-f="pm">Video Prompt</button>
+</div>
+    <div class="hlist" id="hList"></div>
+  </div>
+</section>
+<!-- ============ COMPLETE PROFILE (after Google) ============ -->
+<section id="setupView" class="hidden">
+  <div class="auth-top"><span class="brand"><img class="logo" src="/assets/logo-Dxp94-R5.png" alt="">Trenndly</span></div>
+  <div class="auth">
+    <h1>Complete your profile</h1>
+    <p class="hint">Choose a username and password. You can use them to log in later, instead of Google.</p>
+    <input id="sName" type="text" placeholder="Username" autocomplete="username" maxlength="20" aria-label="Username">
+    <input id="sPass" type="password" placeholder="Password" autocomplete="new-password" aria-label="Password">
+    <input id="sPass2" type="password" placeholder="Confirm password" autocomplete="new-password" aria-label="Confirm password">
+    <button class="btn wide" id="sBtn">Continue</button>
+    <div class="msg" id="sMsg" role="alert"></div>
+    <div class="auth-switch"><a id="sCancel" href="#">Cancel</a></div>
+  </div>
+</section>
+
+<!-- ============ PROFILE COMPLETE POPUP ============ -->
+<div class="overlay hidden" id="doneModal" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="done-ic"></div>
+    <h2>Profile complete</h2>
+    <p>Your account is ready. Let's optimize your first video.</p>
+    <button class="btn wide" id="doneGo">Let's go</button>
+  </div>
+</div>
+<!-- ============ AUTH PAGE ============ -->
+<section id="authView" class="hidden">
+  <div class="auth-top"><a class="brand" href="#" id="brandAuth"><img class="logo" src="/assets/logo-Dxp94-R5.png" alt="Trenndly logo">Trenndly</a></div>
+  <div class="auth">
+    <h1 id="authTitle">Welcome back</h1>
+    <label for="aEmail" class="sr">Email</label>
+    <div id="nameWrap" class="hidden">
+      <input id="aName" type="text" placeholder="Username" autocomplete="nickname" aria-label="Username">
+    </div>
+    <input id="aEmail" type="email" placeholder="Email address" autocomplete="email">
+    <input id="aPass" type="password" placeholder="Password" autocomplete="current-password" aria-label="Password">
+    <button class="btn wide" id="authBtn">Continue</button>
+        <div class="msg" id="authMsg" role="alert"></div>
+    <div class="auth-switch"><span id="switchText">Don't have an account?</span> <a id="switchLink" href="#">Sign up</a></div>
+    <div class="or"><span>OR</span></div>
+    <button class="alt" id="googleBtn">
+      <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.5 5.4 2.6 13.2l7.9 6.1C12.4 13.5 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.7c-.6 3-2.3 5.5-4.8 7.2l7.5 5.8c4.4-4.1 7.1-10.1 7.1-17.5z"/><path fill="#FBBC05" d="M10.5 28.7c-.5-1.4-.8-3-.8-4.7s.3-3.3.8-4.7l-7.9-6.1C.9 16.4 0 20.1 0 24s.9 7.6 2.6 10.8l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.9 2.3-8.4 2.3-6.3 0-11.6-4-13.5-9.8l-7.9 6.1C6.5 42.6 14.6 48 24 48z"/></svg>
+      Continue with Google
+    </button>
+  </div>
+</section>
+<!-- ============ ADMIN NOTICE (blocking, no close) ============ -->
+<div class="overlay hidden" id="noticeModal" role="alertdialog" aria-modal="true" aria-labelledby="noticeTitle" style="z-index:99999">
+  <div class="modal">
+    <h2 id="noticeTitle"></h2>
+    <p id="noticeBody" style="white-space:pre-line"></p>
+  </div>
+</div>
+<!-- ============ LOGIN-REQUIRED MODAL ============ -->
+<div class="overlay hidden" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="modal">
+    <h2 id="mTitle">Please log in first</h2>
+    <p>You need to be logged in to analyze your video.</p>
+    <button class="btn wide" id="modalOk">OK</button>
+  </div>
+</div>
+
+<!-- ============ SIDE MENU ============ -->
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-head">
+    <span class="brand"><img class="logo" src="/assets/logo-Dxp94-R5.png" alt="">Trenndly</span>
+    <button class="menu-btn" id="drawerClose" aria-label="Close menu">&times;</button>
+  </div>
+
+  <!-- Coins: sits at the top of the menu, a little apart from the links -->
+  <div class="coins" id="coinsCard" aria-live="polite">
+    <div class="coins-top">
+      <span class="coin-ic" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.5 10.2c.4-1 1.4-1.6 2.5-1.6 1.5 0 2.5.8 2.5 1.9 0 2.6-5 1.4-5 4 0 1.1 1 1.9 2.5 1.9 1.1 0 2.1-.6 2.5-1.6" stroke-width="1.6"/></svg>
+      </span>
+      <div class="coin-txt">
+        <div><b id="coinNum">--</b><span id="coinMax"></span></div>
+        <small>coins left today</small>
+      </div>
+    </div>
+    <div class="coin-costs">
+      <span>Analyze video <b id="costTags">10</b></span>
+      <span>Suggestion <b id="costHook">5</b></span>
+      <span>Tag Finder <b>Free</b></span>
+      <span>Video Prompt <b id="costPrompt">6</b></span>
+      <span>Refills every day</span>
+    </div>
+  </div>
+  <div class="drawer-sep"></div>
+
+  <nav class="drawer-nav">
+    <button class="nav-item" id="navHistory">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      History
+    </button>
+  </nav>
+</aside>
+
+<!-- ============ FIRST-TIME TUTORIAL ============ -->
+<div class="tut hidden" id="tut" aria-live="polite">
+  <span class="hand-wrap" aria-hidden="true"><i class="fa-solid fa-hand-pointer hand"></i></span>
+  <div class="tut-bubble" id="tutBubble"><span id="tutText"></span></div>
+</div>
+
+<!-- ============ FEEDBACK MODAL ============ -->
+<div class="overlay hidden" id="fbModal" role="dialog" aria-modal="true" aria-labelledby="fbTitle">
+  <div class="modal fb">
+    <button class="x" id="fbClose" aria-label="Close">&times;</button>
+    <div id="fbBody">
+      <h2 id="fbTitle">Share your problem</h2>
+      <p>Tell us what went wrong or how we can improve. We will reply on your account email.</p>
+      <div class="seg" id="fbType">
+        <button class="on" data-t="problem">Problem</button>
+        <button data-t="suggestion">Suggestion</button>
+        <button data-t="other">Other</button>
+      </div>
+      <textarea id="fbMsg" maxlength="1000" placeholder="Describe what happened..."></textarea>
+      <div class="fb-count"><span id="fbCount">0</span>/1000</div>
+      <input id="fbHp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="msg" id="fbErr" role="alert"></div>
+      <button class="btn wide" id="fbSend">Send</button>
+    </div>
+    <div id="fbDone" class="hidden">
+      <div class="done-ic"></div>
+      <h2>Thank you!</h2>
+      <p>We received your message and will look into it.</p>
+      <button class="btn wide" id="fbOk">Done</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+<script src="chat.js"></script>
 </body>
 </html>
