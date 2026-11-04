@@ -2,177 +2,133 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="growly.png">
-<title>Admin Panel</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Trenndly Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="logo.jpg">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="chat.css">
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:"Poppins", sans-serif;
-}
-
-body{
-    background: linear-gradient(
-        180deg,
-        #1f1c2c 0%,
-        #3a3555 30%,
-        #6f6a8a 60%,
-        #928dab 100%
-    );
-    color:white;
-    padding:15px;
-    min-height:100vh;
-}
-
-/* HEADER */
-h2{
-    text-align:center;
-    margin-bottom:20px;
-    font-size:20px;
-}
-
-/* CARD */
-.card{
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(15px);
-    padding:15px;
-    margin-bottom:15px;
-    border-radius:15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    animation: fadeIn 0.3s ease;
-}
-
-/* TEXT */
-.card p{
-    margin:6px 0;
-    font-size:14px;
-}
-
-/* USERNAME */
-.username{
-    font-weight:bold;
-    color:#ffb3c6;
-}
-
-/* BUTTON */
-button{
-    width:100%;
-    padding:10px;
-    margin-top:10px;
-    border:none;
-    border-radius:10px;
-    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-    color:black;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-button:active{
-    transform:scale(0.95);
-}
-
-/* EMPTY */
-.empty{
-    text-align:center;
-    opacity:0.7;
-    margin-top:50px;
-}
-
-/* ANIMATION */
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(10px);}
-    to{opacity:1; transform:translateY(0);}
-}
-/* TOAST */
-#toast{
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    background: rgba(0,0,0,0.8);
-    color: white;
-    padding: 12px 20px;
-    border-radius: 10px;
-    font-size: 14px;
-    opacity: 0;
-    transition: 0.4s;
-    backdrop-filter: blur(10px);
-}
-
-#toast.show{
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
-}
+  .adm-bar { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:6px; }
+  .adm-bar h1 { margin:0; }
+  .live-pill { display:inline-flex; align-items:center; gap:8px; padding:5px 12px; border-radius:var(--r-pill);
+    border:1px solid var(--line); background:var(--surface); font-size:12.5px; color:var(--muted); }
+  .live-pill i { width:8px; height:8px; border-radius:50%; background:var(--green); animation:skpulse 1.6s ease-in-out infinite; }
+  .live-pill.off i { background:var(--danger); animation:none; }
+  .tools-bar { display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+  .nlive { padding:11px 14px; border-radius:var(--r-sm); font-size:14px; margin:12px 0; border:1px solid var(--line); }
+  .nlive.on { background:color-mix(in srgb, var(--danger) 12%, transparent); color:var(--danger); font-weight:500; }
+  .nlive.off { background:var(--surface); color:var(--muted); }
+  .note-s { color:var(--muted); font-size:12.5px; margin:8px 0 0; }
+  .why { color:var(--danger); font-weight:500; }
+  .raw { color:var(--muted); font-size:12px; }
+  .det { margin-top:10px; display:grid; gap:6px; border-top:1px solid var(--line); padding-top:10px; }
+  .det div { font-size:13px; }
 </style>
 </head>
-
 <body>
+<header class="top">
+  <a class="brand" href="index.html"><img class="logo" src="logo.jpg" alt="Trenndly logo">Trenndly Admin</a>
+  <div class="actions">
+    <a class="btn ghost" href="index.html" style="text-decoration:none">Back to site</a>
+    <button class="btn ghost hidden" id="outBtn">Log out</button>
+  </div>
+</header>
 
-<h2>📊 Orders</h2>
+<section class="adm-gate" id="gate">
+  <h1 id="gTitle">Admin sign in</h1>
+  <p id="gText">Sign in with your admin Google account.</p>
+  <button class="alt" id="gBtn">Continue with Google</button>
+  <div class="msg" id="gMsg" role="alert"></div>
+</section>
 
-<div id="orders"></div>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
-<script>
-    
-const firebaseConfig = {
-  apiKey: "AIzaSyDUefeJbHKIAs-l3zvFlGaas6VD63vv4kI",
-  authDomain: "inspire4ever-c60ad.firebaseapp.com",
-  projectId: "inspire4ever-c60ad"
-};
+<main class="adm hidden" id="panel">
+  <div class="adm-bar">
+    <h1>Admin dashboard</h1>
+    <span class="live-pill off" id="live" role="status"><i></i><span id="liveTxt">Connecting…</span></span>
+  </div>
+  <p class="sub" id="loadErr" style="color:var(--danger)"></p>
+  <div class="seg" id="tabs">
+    <button class="on" data-tab="overview">Overview</button>
+    <button data-tab="users">Users</button>
+    <button data-tab="activity">Activity</button>
+    <button data-tab="feedback" id="fbTabBtn">Feedback</button>
+    <button data-tab="chats" id="chatsTabBtn">Chats</button>
+    <button data-tab="notice">Notice</button>
+  </div>
 
-firebase.initializeApp(firebaseConfig);
-let container = document.getElementById("orders");
+  <section id="tab-overview">
+    <h2 class="sec-h">Website at a glance</h2>
+    <div class="stats" id="stats"></div>
+    <h2 class="sec-h">Every feature: kitne chale, kitne fail</h2>
+    <div class="tbl" id="feat"></div>
+    <h2 class="sec-h">Latest failures (kyun fail hue)</h2>
+    <div class="mlist" id="oFails"></div>
+  </section>
 
-firebase.database().ref("orders").on("value", (snapshot) => {
+  <section id="tab-users" class="hidden">
+    <input class="search" id="uSearch" type="search" placeholder="Search by email, username or name">
+    <p class="sub" id="uCount"></p>
+    <div class="mlist" id="uList"></div>
+  </section>
 
-    container.innerHTML = "";
+  <section id="tab-activity" class="hidden">
+    <input class="search" id="aSearch" type="search" placeholder="Search by email or file name">
+    <div class="seg" id="aFilter" style="margin-top:12px">
+      <button class="on" data-f="all">All</button>
+      <button data-f="ok">Success</button>
+      <button data-f="failed">Failed</button>
+    </div>
+    <p class="sub" id="aCount"></p>
+    <div class="mlist" id="aList"></div>
+  </section>
 
-    let data = snapshot.val();
+  <section id="tab-feedback" class="hidden">
+    <p class="sub" id="count">Loading...</p>
+    <div class="seg" id="filter">
+      <button class="on" data-t="all">All</button>
+      <button data-t="problem">Problems</button>
+      <button data-t="suggestion">Suggestions</button>
+      <button data-t="other">Other</button>
+    </div>
+    <div class="mlist" id="list"></div>
+  </section>
 
-    if(!data){
-        container.innerHTML = "<div class='empty'>No Orders Yet 😴</div>";
-        return;
-    }
+  <section id="tab-chats" class="hidden">
+    <p class="sub" id="chatCount">Loading...</p>
+    <div class="adm-chat">
+      <div class="tbl" id="chatUsers"></div>
+      <div class="adm-thread hidden" id="chatThread">
+        <header id="chatHead"></header>
+        <div class="adm-msgs" id="chatMsgs"></div>
+        <div class="adm-reply">
+          <textarea id="chatReply" rows="1" maxlength="1000" placeholder="Write a reply..." aria-label="Reply"></textarea>
+          <button class="btn" id="chatReplyBtn">Reply</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    let orders = Object.values(data).reverse();
+  <section id="tab-notice" class="hidden">
+    <p class="sub">Popup on = poori site par screen block ho jayegi, user cancel nahi kar sakta.</p>
+    <div class="nlive off" id="nLive" role="status">Loading…</div>
+    <label style="display:flex;gap:8px;align-items:center;margin:12px 0">
+      <input type="checkbox" id="nActive"> Show popup on site
+    </label>
+    <input class="search" id="nTitle" type="text" maxlength="80" placeholder="Popup title">
+    <textarea id="nMsg" rows="5" maxlength="500" placeholder="Details: kya hua hai..." style="width:100%;margin:10px 0"></textarea>
+    <button class="btn" id="nSave">Save</button>
+    <p class="sub" id="nStatus"></p>
+  </section>
+</main>
 
-    orders.forEach(order => {
-
-        let div = document.createElement("div");
-        div.className = "card";
-
-        div.innerHTML = `
-            <p><b>Type:</b> ${order.type.toUpperCase()}</p>
-            <p><b>Offer:</b> ${order.offer}</p>
-            <p><b>Username:</b> <span class="username">@${order.username}</span></p>
-            <button onclick="copyText('${order.username}')">Copy Username</button>
-        `;
-
-        container.appendChild(div);
-    });
-
-});
-
-function copyText(text){
-    navigator.clipboard.writeText(text);
-
-    let toast = document.getElementById("toast");
-    toast.innerText = "Copied: @" + text;
-
-    toast.classList.add("show");
-
-    setTimeout(() => {
-        toast.classList.remove("show");
-    }, 2000);
-}
-
-</script>
-
-<div id="toast">Copied ✅</div>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script src="config.js"></script>
+<script src="admin.js"></script>
 </body>
 </html>
